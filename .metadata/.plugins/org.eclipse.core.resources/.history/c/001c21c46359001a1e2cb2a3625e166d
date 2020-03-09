@@ -1,0 +1,38 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class EndToEndSpiceJet {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		System.setProperty("webdriver.chrome.driver", "D:\\Udemy_RahulShetty_Docs_Java_Selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.spicejet.com/");
+		
+		//Verify one way radio button is checked default.
+		System.out.println("One way radio button enabled" + " " +driver.findElement(By.id("ctl00_mainContent_rbtnl_Trip_0")).isEnabled());
+		
+		//Verify since one way trip enabled , the return calender is disabled. if not , enable one way trip.
+		if (driver.findElement(By.id("Div1")).getAttribute("style").contains("0.5"))
+		{
+			System.out.println("One way is enabled")
+		}
+		else
+		{
+			driver.findElement(By.id("ctl00_mainContent_rbtnl_Trip_0")).click();
+		}
+		
+		//Enter source place
+		driver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT")).click();
+		driver.findElement(By.xpath("//a[@value = 'BLR']")).click();
+		Thread.sleep(2000);
+		
+		//Enter destination place
+		//driver.findElement(By.id("ctl00_mainContent_ddl_destinationStation1_CTXT")).click();
+		driver.findElement(By.xpath("")).click();
+
+	}
+
+}

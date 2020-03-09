@@ -1,0 +1,27 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Scope {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		System.setProperty("webdriver.chrome.driver",
+				"D:\\\\Udemy_RahulShetty_Docs_Java_Selenium\\\\chromedriver_win32\\\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.rahulshettyacademy.com/AutomationPractice/");
+		
+		// Number of Links in the entire page 
+		int numberOfLinksOnPage = driver.findElements(By.tagName("a")).size();
+		System.out.println(numberOfLinksOnPage);
+		
+		//Number of Links in the footer section of the page
+		WebElement footer = driver.findElement(By.id("gf-BIG"));
+		int numberOfLinksOnFooter = driver.findElements(By.tagName("a")).size();
+		System.out.println(numberOfLinksOnFooter);
+
+	}
+
+}

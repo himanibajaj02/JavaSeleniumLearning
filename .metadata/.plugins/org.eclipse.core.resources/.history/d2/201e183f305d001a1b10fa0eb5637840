@@ -1,0 +1,39 @@
+import java.util.Arrays;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Greenkart {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		System.setProperty("webdriver.chrome.driver", "D:\\Udemy_RahulShetty_Docs_Java_Selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
+		
+		//Expected products which we would need to add to cart
+		String [] veggies = {"Cucumber" , "Brocolli" , "Cauliflower"};
+		
+		int j = 0;
+		List <WebElement> products = driver.findElements(By.cssSelector("h4.product-name"));
+		for (int i=0 ; i<=products.size() ; i++)
+		{
+			//format the vegetable name ---> Brocolli - 1 Kg
+			String[] name = products.get(i).getText().split("-");
+			String formattedName = name[i].trim();
+			List veggiesList = Arrays.asList(veggies);
+		
+			
+			if(veggiesList.contains(formattedName))
+			{
+			  driver.findElements(By.xpath("//button[text()='ADD TO CART']")).get(i).click();
+			}
+			
+		}
+	}
+
+}

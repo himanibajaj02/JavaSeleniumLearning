@@ -1,0 +1,31 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SalesforceEndToEnd {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver", "D:\\Udemy_RahulShetty_Docs_Java_Selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.rediff.com/");
+		
+		//"Sign in" using link text 
+		//driver.findElement(By.linkText("Sign in")).click();
+		
+		// "Sign in" Xpath using Regular expression - using contains function
+		driver.findElement(By.xpath("//a[contains(@title , 'Sign in')]")).click();
+		
+		//username on loginpage --- CSS
+		driver.findElement(By.cssSelector("input[name='login']")).sendKeys("user1");
+		
+		//password on loginpage -- CSS using Regular Expression
+		driver.findElement(By.cssSelector("input[name*='passwd']")).sendKeys("1234444");
+		
+		//uncheck "keep me sign" using normal xpath
+		driver.findElement(By.xpath("//input[@name='remember']")).click();
+		
+		
+	}
+
+}
